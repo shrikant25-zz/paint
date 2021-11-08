@@ -35,12 +35,12 @@ class Game:
 
     def draw_grid(self, win, grid): # drawing actual pixels on screen
         for i, row in enumerate(grid):
-            for j, color in enumerate(row): # 1 pixel = 1 unit grid * Pixel Dimension
+            for j, color in enumerate(row): # pixel's location in grid = 1 unit grid * Pixel Dimension(height/width)
                 pygame.draw.rect(win, color, (j * PIXEL_DIMENSIONS, i * PIXEL_DIMENSIONS, PIXEL_DIMENSIONS, PIXEL_DIMENSIONS))
     
     def draw_toolbar_line(self, win):
-        for col in range(COLS):  # just drawing line between the painting part and the menu bar
-            pygame.draw.rect(win, color[3], (col * PIXEL_DIMENSIONS, HEIGHT - 90, PIXEL_DIMENSIONS, PIXEL_DIMENSIONS))
+         # just drawing line between the painting part and the menu bar
+            pygame.draw.line(win, color[3],  (0,ROWS * PIXEL_DIMENSIONS + 20),(COLS * PIXEL_DIMENSIONS  ,ROWS * PIXEL_DIMENSIONS + 20), PIXEL_DIMENSIONS//2)
 
     def draw(self, win, grid):
         self.draw_grid(win, grid) # gives call to draw grid function
@@ -72,7 +72,7 @@ class Game:
         pygame.init() # inits the game
         win = pygame.display.set_mode((WIDTH, HEIGHT)) # set the window
         pygame.display.set_caption("PAINT") # title for window
-        grid = self.init_grid(BG_COLOR) # init_grid creates a grid and adds hec color values to each section of grid 
+        grid = self.init_grid(BG_COLOR) # init_grid creates a grid and adds hex color values to each section of grid 
         win.fill(color[4]) # sets the background color
         self.initialize_buttons(win) 
         self.draw_toolbar_line(win)
